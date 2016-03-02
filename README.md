@@ -6,3 +6,7 @@ A tiny little app that searches YIFY. Built as an experiment with RxSwift.
 
     git clone git@github.com:steve228uk/Torrents.git
     pod install
+
+## Screenshots
+
+![Screenshot 1](http://sht.tl/Q2p3hq)
