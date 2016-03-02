@@ -31,6 +31,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         tableView.rx_itemSelected.subscribeNext { indexPath in
             UIPasteboard.generalPasteboard().string = self.objects.value[indexPath.row]["link"]
             JLToast.makeText("Link Copied!").show()
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }.addDisposableTo(disposeBag)
     }
     
@@ -43,7 +44,6 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     func addObserverToSearchBar() {
-        
         searchBar.rx_text
         .throttle(0.3, scheduler: MainScheduler.instance)
         .subscribeNext { text in
@@ -51,7 +51,6 @@ class ViewController: UIViewController, UITableViewDelegate {
                 .subscribeNext { self.objects.value = $0 }
                 .addDisposableTo(disposeBag)
         }.addDisposableTo(disposeBag)
-        
     }
 
 }
