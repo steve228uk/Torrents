@@ -9,4 +9,4 @@ A tiny little app that searches YIFY. Built as an experiment with RxSwift.
 
 ## Screenshots
 
-![Screenshot 1](http://sht.tl/Q2p3hq)
+![Screenshot 1](http://sht.tl/MK5oML)
