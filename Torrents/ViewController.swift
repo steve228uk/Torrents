@@ -47,8 +47,13 @@ class ViewController: UIViewController, UITableViewDelegate {
         searchBar.rx_text
         .throttle(0.3, scheduler: MainScheduler.instance)
         .subscribeNext { text in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             YIFY.search(text)
-                .subscribeNext { self.objects.value = $0 }
+                .subscribe(onNext: { self.objects.value = $0 }, onError: { _ in
+                    JLToast.makeText("Could not connect to YIFY!").show()
+                }, onCompleted: {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                }, onDisposed: nil)
                 .addDisposableTo(disposeBag)
         }.addDisposableTo(disposeBag)
     }
